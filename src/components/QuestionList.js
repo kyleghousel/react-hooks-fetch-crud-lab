@@ -24,12 +24,29 @@ function QuestionList({ newQuestion }) {
     setQuestions(updatedQuestions);
   }
 
+  const handleUpdateQuestion = (updatedQuestion) => {
+    const updatedQuestions = questions.map((question) => {
+      if (question.id === updatedQuestion.id) {
+        return updatedQuestion;
+      } else {
+        return question;
+      }
+    });
+    setQuestions(updatedQuestions);
+  }
+
   return (
     <section>
       <h1>Quiz Questions</h1>
       <ul>
         {questions && questions.map((question) => (
-        <QuestionItem key={question.id} id={question.id} question={question} onDeleteQuestion={handleDeleteItem}/>
+        <QuestionItem
+          key={question.id}
+          id={question.id}
+          question={question}
+          onDeleteQuestion={handleDeleteItem}
+          onUpdateQuestion={handleUpdateQuestion}
+        />
       ))}
       </ul>
     </section>
